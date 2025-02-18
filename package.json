@@ -1,0 +1,14 @@
+{
+  "name": "project-break-2",
+  "version": "1.0.0",
+  "description": "Project Break - The Bridge",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "Riccardo Spinelli",
+  "license": "MIT"
+}
