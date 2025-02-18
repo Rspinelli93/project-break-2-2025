@@ -1,12 +1,17 @@
-/*
-Remove node_modules from Git History
-I need to remove packaje json from Git tracking:
+const express = require('express');
+const app = express();
+require('dotenv').config();
+const PORT = 3000;
 
-# Remove node_modules from tracking
-git rm -r --cached node_modules
+app.use(express.json());
+app.use(express.urlencoded({ extended:true }))
 
-# Commit the change
-git commit -m "Removed node_modules from repository"
+const { dbConnection } = require('./config/db');
+dbConnection();
 
-# Push the changes to GitHub
-git push origin main */
+const routesProducts = require('./routes/productRoutes');
+app.use('/', routesProducts);
+
+app.listen(PORT, () => {
+    console.log(`Server listening at http://localhost:${PORT} ✅`);
+});

@@ -7,8 +7,15 @@
     "test": "test"
   },
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "start": "node --watch index.js"
   },
   "author": "Riccardo Spinelli",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongodb": "^6.13.0",
+    "mongoose": "^8.10.1"
+  }
 }
