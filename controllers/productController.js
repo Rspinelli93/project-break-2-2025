@@ -1,16 +1,6 @@
-/* 
-?GET /products: Devuelve todos los productos. Cada producto tendrá un enlace a su página de detalle.
-?GET /products/:productId: Devuelve el detalle de un producto.
-GET /dashboard: Devuelve el dashboard del administrador. En el dashboard aparecerán todos los artículos que se hayan subido. Si clickamos en uno de ellos nos llevará a su página para poder actualizarlo o eliminarlo.
-GET /dashboard/new: Devuelve el formulario para subir un artículo nuevo.
-?POST /dashboard: Crea un nuevo producto.
-GET /dashboard/:productId: Devuelve el detalle de un producto en el dashboard.
-GET /dashboard/:productId/edit: Devuelve el formulario para editar un producto.
-PUT /dashboard/:productId: Actualiza un producto.
-DELETE /dashboard/:productId/delete: Elimina un producto.
-
- */
 const Product = require("../models/Product"); 
+const mongoose = require("mongoose");
+const { getEditForm, postForm } = require("../public/views/productForms")
 
 //* - GET /products: Traer todos los productos
 
@@ -70,6 +60,71 @@ const create = async(req, res) => {
     }
 }
 
+//* - GET / Edit
+
+ const editProduct = async (req, res) => {
+    try {
+        const id = req.params._productId;  // Extract ID from route parameters
+        
+        // Validamos id
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: "Invalid Product ID" });
+        }
+
+        const productUpdated = await Product.findByIdAndUpdate(
+            id,
+            req.body,
+            { new: true, runValidators: true }
+        );
+
+        if (!productUpdated) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+        res.status(200).json(productUpdated);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "There was a problem trying to update the product" });
+    }
+} 
+
+//* - getAndEdit (returns a form with the values of the product to edit)
+
+const getAndEdit = async (req, res) => {
+    try {
+        const id = req.params._productId;  // Extract ID from route parameters
+
+        if (id === "new") {  
+            // If "new" is received, return the form for creating a product
+            return res.status(200).send(`<p>Este producto no existe aun</p>`);
+        }
+
+        // findById() is a Mongoose method used to find a document by its id.
+        const product = await Product.findById(id);
+        const editFormHtml = await getEditForm(id); 
+        if (!product) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+        res.status(200).send(editFormHtml);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ message: "There was a problem trying to get this product" });
+    }
+}
+
+//* - createNew (returns an empty form)
+
+const createNew = (req, res) => {
+    try {
+        console.log(postForm)
+        res.status(200).send(postForm); 
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ message: "There was a problem sending the form" });
+    }
+};
+
 //* - DELETE /dashboard/:_productId/delete: Endpoint para eliminar una tarea.
 
 const deleteProduct = async (req, res) => {
@@ -94,5 +149,8 @@ module.exports = {
     getAll,
     getById,
     create,
-    deleteProduct
+    deleteProduct,
+    editProduct,
+    getAndEdit,
+    createNew
 }
