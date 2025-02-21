@@ -1,17 +1,19 @@
-/* // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+//! TO BE CHECKED
+//TODO
 
-// Your web app's Firebase configuration
+
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js';
+import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js';
+
 const firebaseConfig = {
-  apiKey: "AIzaSyDKz4RbwcFZSrRQbhpDDKfYWxz6_TA01i8",
-  authDomain: "project-break-2-94f78.firebaseapp.com",
-  projectId: "project-break-2-94f78",
-  storageBucket: "project-break-2-94f78.firebasestorage.app",
-  messagingSenderId: "767999383588",
-  appId: "1:767999383588:web:6aa81188c03045f7bee0b1"
+  apiKey: process.env.API_KEY,
+  authDomain: "project-break-back.firebaseapp.com",
+  projectId: "project-break-back",
+  storageBucket: "project-break-back.firebasestorage.app",
+  messagingSenderId: "408546883394",
+  appId: "1:408546883394:web:5b3c6d1da75af5d1c8badb"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig); */
+// Inicializa Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);

@@ -1,4 +1,4 @@
-/* require('dotenv').config();
+require('dotenv').config();
 //Inicializa Firebase Admin SDK
 const serviceAccount = {
   "type": process.env.FIREBASE_TYPE,
@@ -14,4 +14,4 @@ const serviceAccount = {
   "universe_domain": process.env.FIREBASE_UNIVERSE_DOMAIN
 };
 
-module.exports = serviceAccount */
+module.exports = serviceAccount
