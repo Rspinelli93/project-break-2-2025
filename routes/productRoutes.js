@@ -11,7 +11,7 @@ router.get("/products/:_productId", getById); //todo - GET Detalle de un product
 
 // MIDDLEWARE //
 
-router.use(checkAuth);
+//router.use(checkAuth);
 
 // --- RUTAS AUTH --- //
 
