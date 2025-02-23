@@ -22,10 +22,23 @@ const getEditForm = async (id) => {
                 <input type="url" id="imagen" name="imagen" value="${product.imagen}" required><br><br>
                 
                 <label for="categoria">Categoría:</label>
-                <input type="text" id="categoria" name="categoria" value="${product.categoria}" required><br><br>
-                
+                <select id="categoria" name="categoria" required>
+                    <option value="Camisetas" ${product.categoria == 'Camisetas' ? 'selected' : ''}>Camisetas</option>
+                    <option value="Pantalones" ${product.categoria == 'Pantalones' ? 'selected' : ''}>Pantalones</option>
+                    <option value="Zapatos" ${product.categoria == 'Zapatos' ? 'selected' : ''}>Zapatos</option>
+                    <option value="Accesorios" ${product.categoria == 'Accesorios' ? 'selected' : ''}>Accesorios</option>
+                </select>
+                <br><br>
+
                 <label for="talla">Talla:</label>
-                <input type="text" id="talla" name="talla" value="${product.talla}" required><br><br>
+                <select id="talla" name="talla" required>
+                    <option value="XS" ${product.talla == 'XS' ? 'selected' : ''}>XS</option>
+                    <option value="S" ${product.talla == 'S' ? 'selected' : ''}>S</option>
+                    <option value="M" ${product.talla == 'M' ? 'selected' : ''}>M</option>
+                    <option value="L" ${product.talla == 'L' ? 'selected' : ''}>L</option>
+                    <option value="XL" ${product.talla == 'XL' ? 'selected' : ''}>XL</option>
+                </select>
+                <br><br>
                 
                 <label for="precio">Precio:</label>
                 <input type="number" id="precio" name="precio" step="0.01" value="${product.precio}" required><br><br>
