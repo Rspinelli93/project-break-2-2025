@@ -117,7 +117,6 @@ const getAndEdit = async (req, res) => {
 
 const createNew = (req, res) => {
     try {
-        console.log(postForm)
         res.status(200).send(postForm); 
     } catch (error) {
         console.error(error);
