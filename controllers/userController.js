@@ -21,7 +21,8 @@ const loginUser = async (req, res) => {
   try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const token = await userCredential.user.getIdToken();
-
+      console.log(userCredential)
+      console.log(token)
       res.cookie("token", token, { httpOnly: true }); // Save token in a cookie
       res.json({ message: "Logged in!", user: userCredential.user });
 

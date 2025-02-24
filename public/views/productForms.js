@@ -9,7 +9,7 @@ const getEditForm = async (id) => {
         }
 
         return `
-        <form id="editProductForm">
+        <form id="editProductForm" method="POST" action="/dashboard/${id}">
             <input type="hidden" id="productId" value="${id}">
 
             <label for="nombre">Nombre:</label>
