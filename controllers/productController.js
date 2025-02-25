@@ -2,7 +2,6 @@ const Product = require("../models/Product");
 const mongoose = require("mongoose");
 const { getEditForm, postForm } = require("../public/views/productForms")
 
-//* - GET /products: Traer todos los productos
 
 const getAll = async(req, res) => {
     try {
@@ -14,10 +13,7 @@ const getAll = async(req, res) => {
             .status(500)
             .json({ message: "There was a problem trying get all the tasks" });
     }
-}
-
-//* - GET /products/_productId: Buscar producto por id
-
+};
 const getById = async (req, res) => {
     try {
         const id = req.params._productId;  // Extract ID from route parameters
@@ -34,10 +30,7 @@ const getById = async (req, res) => {
         console.error(error);
         res.status(500).json({ message: "There was a problem trying to get this product" });
     }
-}
-
-//* - POST /dashboard: Endpoint para crear un producto nuevo.
-
+};
 const create = async(req, res) => {
     try {
         const product = await Product.create(
@@ -58,10 +51,7 @@ const create = async(req, res) => {
             .status(500)
             .send({ message: "There was a problem trying to create a product" });
     }
-}
-
-//* - GET / Edit
-
+};
  const editProduct = async (req, res) => {
     console.log(req.body, req.params)
     try {
@@ -87,10 +77,8 @@ const create = async(req, res) => {
         console.error(error);
         res.status(500).json({ message: "There was a problem trying to update the product" });
     }
-} 
-
-//* - getAndEdit (returns a form with the values of the product to edit)
-
+};
+//*formulario
 const getAndEdit = async (req, res) => {
     try {
         const id = req.params._productId;  // Extract ID from route parameters
@@ -113,9 +101,7 @@ const getAndEdit = async (req, res) => {
         res.status(500).send({ message: "There was a problem trying to get this product" });
     }
 }
-
-//* - createNew (returns an empty form)
-
+//*formulario
 const createNew = (req, res) => {
     try {
         res.status(200).send(postForm); 
@@ -124,9 +110,6 @@ const createNew = (req, res) => {
         res.status(500).send({ message: "There was a problem sending the form" });
     }
 };
-
-//* - DELETE /dashboard/:_productId/delete: Endpoint para eliminar una tarea.
-
 const deleteProduct = async (req, res) => {
     try {
         const id = req.params._productId;  // Extract ID from route parameters

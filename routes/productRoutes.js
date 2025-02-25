@@ -6,21 +6,21 @@ const { getAll, getById, create, deleteProduct, editProduct, getAndEdit, createN
 
 // --- RUTAS PUBLICAS --- //
 
-router.get("/products", getAll); // Todos los productos /products 
-router.get("/products/:_productId", getById); //todo - GET Detalle de un producto /products (aca trabajar en la funcion)
+router.get("/products", getAll);
+router.get("/products/:_productId", getById);
 
 // MIDDLEWARE //
 
-//router.use(checkAuth);
+router.use(checkAuth);
 
 // --- RUTAS AUTH --- //
 
-router.post("/dashboard", create); //* Crea producto
-router.get("/dashboard", getAll); // Todos los productos /dashboard
-router.get("/dashboard/newProduct", createNew) // action va a ser la url de create y el metodo post (el formulario vacio)
-router.get("/dashboard/:_productId", getById); //todo - GET Detalle de un producto /dashboard (aca trabajar en la funcion)
-router.post("/dashboard/:_productId", editProduct); //todo - PUT Detalle de un producto (aca trabajar en la funcion) 
-router.get("/dashboard/:_productId/edit", getAndEdit) // action va a ser la url de editProduct y el metodo put (el formulario con values)
-router.delete("/dashboard/:_productId/delete", deleteProduct); //* Elimina un producto
+router.post("/dashboard", create);
+router.get("/dashboard", getAll);
+router.get("/dashboard/newProduct", createNew) //*formulario
+router.get("/dashboard/:_productId", getById);
+router.post("/dashboard/:_productId", editProduct);
+router.get("/dashboard/:_productId/edit", getAndEdit) //*formulario
+router.delete("/dashboard/:_productId/delete", deleteProduct);
 
 module.exports = router;
