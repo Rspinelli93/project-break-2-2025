@@ -19,7 +19,7 @@ router.post("/dashboard", create);
 router.get("/dashboard", getAll);
 router.get("/dashboard/newProduct", createNew) //*formulario
 router.get("/dashboard/:_productId", getById);
-router.post("/dashboard/:_productId", editProduct);
+router.put("/dashboard/:_productId", editProduct);
 router.get("/dashboard/:_productId/edit", getAndEdit) //*formulario
 router.delete("/dashboard/:_productId/delete", deleteProduct);
 
