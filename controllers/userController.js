@@ -11,21 +11,19 @@ const firebaseConfig = {
   appId: "1:408546883394:web:5b3c6d1da75af5d1c8badb"
 };
 
-//???
-// Initialize Firebase Admin SDK (only once for backend use)
+//!
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.applicationDefault(),
   });
 } else {
-  admin.app(); // If already initialized, use the existing app.
+  admin.app(); 
 }
 
-// Initialize Firebase Client SDK separately for client-side functionality
 const { initializeApp } = require('firebase/app');
-const clientApp = initializeApp(firebaseConfig);  // Use a unique name for client-side app
-const auth = getAuth(clientApp);  // Firebase client auth for user authentication
-//???
+const clientApp = initializeApp(firebaseConfig);
+const auth = getAuth(clientApp);
+//!
 
 const userRegister = async (req, res) => {
   const { email, password } = req.body;

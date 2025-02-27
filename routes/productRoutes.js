@@ -4,16 +4,16 @@ const { checkAuth } = require("../middlewares/authMiddlewares")
  
 const { getAll, getById, create, deleteProduct, editProduct, getAndEdit, createNew } = require("../controllers/productController")
 
-// --- RUTAS PUBLICAS --- //
+//* --- RUTAS PUBLICAS --- //
 
 router.get("/products", getAll);
 router.get("/products/:_productId", getById);
 
-// MIDDLEWARE //
+//* MIDDLEWARE //
 
 //!router.use(checkAuth);
 
-// --- RUTAS AUTH --- //
+//* --- RUTAS AUTH --- //
 
 router.post("/dashboard", create);
 router.get("/dashboard", getAll);

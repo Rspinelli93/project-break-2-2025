@@ -90,7 +90,6 @@ const postForm = `
         </form>
     `;
 
-// Export the functions
 module.exports = {
     getEditForm,
     postForm

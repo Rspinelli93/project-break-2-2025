@@ -16,9 +16,8 @@ const getAll = async(req, res) => {
 };
 const getById = async (req, res) => {
     try {
-        const id = req.params._productId;  // Extract ID from route parameters
+        const id = req.params._productId; 
 
-        // findById() is a Mongoose method used to find a document by its id.
         const product = await Product.findById(id);
 
         if (!product) {
@@ -55,9 +54,8 @@ const create = async(req, res) => {
  const editProduct = async (req, res) => {
     console.log(req.body, req.params)
     try {
-        const id = req.params._productId;  // Extract ID from route parameters
+        const id = req.params._productId; 
         
-        // Validamos id
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ message: "Invalid Product ID" });
         }
@@ -81,14 +79,12 @@ const create = async(req, res) => {
 //*formulario
 const getAndEdit = async (req, res) => {
     try {
-        const id = req.params._productId;  // Extract ID from route parameters
+        const id = req.params._productId;  
 
-        if (id === "new") {  
-            // If "new" is received, return the form for creating a product
+        if (id === "new") {       
             return res.status(200).send(`<p>Este producto no existe aun</p>`);
         }
 
-        // findById() is a Mongoose method used to find a document by its id.
         const product = await Product.findById(id);
         const editFormHtml = await getEditForm(id); 
         if (!product) {
@@ -112,12 +108,10 @@ const createNew = (req, res) => {
 };
 const deleteProduct = async (req, res) => {
     try {
-        const id = req.params._productId;  // Extract ID from route parameters
-
-        // deleteOne() Deletes the first document that matches the query.
+        const id = req.params._productId;
         const deletedProduct = await Product.deleteOne({ _id: id });
 
-        if (deletedProduct === 0) {
+        if (deletedProduct.deletedCount === 0) {
             return res.status(404).json({ message: "Product not found" });
         }
         res.status(200).json(deletedProduct);
