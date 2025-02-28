@@ -11,7 +11,6 @@ const firebaseConfig = {
   appId: "1:408546883394:web:5b3c6d1da75af5d1c8badb"
 };
 
-//!
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.applicationDefault(),
@@ -23,7 +22,6 @@ if (!admin.apps.length) {
 const { initializeApp } = require('firebase/app');
 const clientApp = initializeApp(firebaseConfig);
 const auth = getAuth(clientApp);
-//!
 
 const userRegister = async (req, res) => {
   const { email, password } = req.body;
@@ -32,14 +30,14 @@ const userRegister = async (req, res) => {
       const existingUser = await admin.auth().getUserByEmail(email).catch(() => null);
 
       if (existingUser) {
-          return res.status(400).json({ response: 'false', mensaje: 'El usuario ya existe' });
+          return res.status(400).json({ response: 'false', mensaje: 'User already exists' });
       }
       
       const newUser = await admin.auth().createUser({ email, password });
 
       res.json({
           response: 'ok',
-          mensaje: 'Usuario creado con éxito',
+          mensaje: 'User created succesfully',
           user: { uid: newUser.uid, email: newUser.email }
       });
 

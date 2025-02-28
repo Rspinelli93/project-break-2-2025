@@ -76,7 +76,23 @@ const create = async(req, res) => {
         res.status(500).json({ message: "There was a problem trying to update the product" });
     }
 };
-//*formulario
+const deleteProduct = async (req, res) => {
+    try {
+        const id = req.params._productId;
+        const deletedProduct = await Product.deleteOne({ _id: id });
+
+        if (deletedProduct.deletedCount === 0) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+        res.status(200).json(deletedProduct);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "There was a problem trying to delete the Product" });
+    }
+};
+
+//* Formularios (no usados)
 const getAndEdit = async (req, res) => {
     try {
         const id = req.params._productId;  
@@ -97,7 +113,6 @@ const getAndEdit = async (req, res) => {
         res.status(500).send({ message: "There was a problem trying to get this product" });
     }
 }
-//*formulario
 const createNew = (req, res) => {
     try {
         res.status(200).send(postForm); 
@@ -106,21 +121,6 @@ const createNew = (req, res) => {
         res.status(500).send({ message: "There was a problem sending the form" });
     }
 };
-const deleteProduct = async (req, res) => {
-    try {
-        const id = req.params._productId;
-        const deletedProduct = await Product.deleteOne({ _id: id });
-
-        if (deletedProduct.deletedCount === 0) {
-            return res.status(404).json({ message: "Product not found" });
-        }
-        res.status(200).json(deletedProduct);
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "There was a problem trying to delete the Product" });
-    }
-}
 
 module.exports = {
     getAll,

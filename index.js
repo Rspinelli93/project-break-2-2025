@@ -11,8 +11,7 @@ const docs = require('./docs/index')
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-});
-
+})
 app.use(cors())
 
 const routesProducts = require('./routes/productRoutes');
